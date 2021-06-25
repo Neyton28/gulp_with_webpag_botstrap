@@ -299,6 +299,7 @@
         border-radius: 12px;
         transition: 0.2s;
         margin-bottom: 0;
+        position: relative;  // добавив редатів баг був в label
 
         input {
             position: absolute;

@@ -1,105 +1,160 @@
-var gulp = require('gulp');
-var sass = require('gulp-sass');
-var watch = require('gulp-watch');
-var concat = require('gulp-concat');
-var uglify  = require('gulp-uglifyjs'); // Подключаем gulp-uglifyjs (для сжатия JS)
-var gutil = require( 'gulp-util' );
-var ftp = require( 'vinyl-ftp' );
-var autoprefixer = require('gulp-autoprefixer');
-var rigger = require('gulp-rigger');
-var imagemin = require('gulp-imagemin');
-var connect = require('gulp-connect');
-var sourcemaps = require('gulp-sourcemaps');
-var cssbeautify = require('gulp-cssbeautify');
-var cssmin = require('gulp-cssmin');
-var rename = require('gulp-rename');
-var spritesmith = require('gulp.spritesmith');
+const   {task, watch, src, dest, parallel, series} = require('gulp'),
+        browserSync = require('browser-sync'),
+        sass = require('gulp-sass'),
+        uglify = require('gulp-uglify'),
+        babel = require('gulp-babel'),
+        fileinclude = require('gulp-file-include'),
+        prefixer = require('gulp-autoprefixer'),
+        imagemin = require('gulp-imagemin'),
+        sourcemaps = require('gulp-sourcemaps'),
+        cssnano = require('gulp-cssnano'),
+        rimraf = require('rimraf'),
+        rename = require('gulp-rename'),
+        stream = browserSync.stream
+        
 
-//-----------------------------------path----------------------------//
-var  path = {
-    build: { //Тут мы укажем куда складывать готовые после сборки файлы
+//----------------------------------- Path ----------------------------//
+
+const  path = {
+    build: {
         html: 'build/',
         css: 'build/css',
-        image: 'buildimg',
-        js: 'build/js'
+        img: 'build/img',
+        js: 'build/js',
+        fonts: 'build/fonts',
     },
-    src: { //Пути откуда брать исходники
+    src: {
         html: 'src/html/*.html',
         scss: 'src/scss/*.scss',
-        image: 'srcimg/*',
-        js: 'src/js/*.js'
+        img: 'src/img/**',
+        js: 'src/js/*.js',
+        jsLib: 'src/js-lib/*.js',
+        fonts: 'src/fonts/**'
     },
-    watch: { //Тут мы укажем, за изменением каких файлов мы хотим наблюдать
+    watch: {
         html: 'src/html/**/*.html',
         scss: 'src/scss/**',
-        js: 'src/js/**'
+        js: 'src/js/**',
+        img: 'src/img/**',
+        fonts: 'src/fonts/**'
     },
     clean: './build'
 };
-// server connect
-gulp.task('connect', function() {
-    connect.server({
-        host: '127.0.0.1',
-        port: 9999,
-        root: 'build',
-        livereload: true
-    });
-});
 
-//-----------------------------------image task----------------------------//
-// gulp.task('compress', function() {
-//   gulp.src(path.src.image)
-//   .pipe(imagemin())
-//   .pipe(gulp.dest(path.build.image))
-// });
+//----------------------------------- Html ----------------------------//
 
-//-----------------------------------html task----------------------------//
-gulp.task('html', function () {
-    gulp.src(path.src.html) //Выберем файлы по нужному пути
-        .pipe(rigger()) //Прогоним через rigger
-        .pipe(connect.reload())
-        .pipe(gulp.dest(path.build.html)) //Выплюнем их в папку build
-});
+const html = function() {
+    return src(path.src.html)
+        .pipe(fileinclude({
+            prefix: '@@',
+            basepath: '@file'
+        }))
+        .pipe(dest(path.build.html))
+        .pipe(stream())
+};
 
-//-----------------------------------SCSS to CSS----------------------------//
-gulp.task('sass', function () {
-    return gulp.src(path.src.scss)
-        .pipe(sass().on('error', sass.logError))
-        .pipe(autoprefixer(['last 15 versions', '> 1%', 'ie 8', 'ie 7'], { cascade: false }))
-        .pipe(cssbeautify())
+//----------------------------------- Style ----------------------------//
+
+const styles = function () {
+    return src(path.src.scss)
         .pipe(sourcemaps.init())
-        .pipe(cssmin())
+        .pipe(sass())
+        .pipe(prefixer()) 
+        .pipe(cssnano())
         .pipe(rename({suffix: '.min'}))
-        .pipe(connect.reload())
-        .pipe(gulp.dest(path.build.css));
-});
+        .pipe(sourcemaps.write('.'))
+        .pipe(dest(path.build.css))
+        .pipe(stream());
+};
 
-gulp.task('scripts', function() {
-    return gulp.src([ // Берем все необходимые библиотеки
-        'src/js/jquery.js',
-        'src/js/niceScroll.js',
-        'src/js/main.js',
-    ])
-        .pipe(concat('main.min.js')) // Собираем их в кучу в новом файле libs.min.js
+const styles_without_min = function (){
+    return src(path.src.scss)
+    .pipe(sass())
+    .pipe(prefixer())
+    .pipe(dest(path.build.css))
+}
 
-        .pipe(gulp.dest('build/js')); // Выгружаем в папку app/js
-    // .pipe(gulp.dest(path.build.js));
-    //.pipe(uglify()) // Сжимаем JS файл
-});
+//----------------------------------- Fonts ----------------------------//
 
-//-----------------------------------watch task----------------------------//
-gulp.task('sass:watch', function () {
-    gulp.watch(path.watch.scss, ['sass']);
-});
-gulp.task('html:watch', function () {
-    gulp.watch(path.watch.html, ['html']);
-});
-// gulp.task('image:watch', function() {
-//   gulp.watch(path.src.image, ['compress']);
-// });
-gulp.task('scripts:watch', function() {
-    gulp.watch(path.src.js, ['scripts']);
-});
+const fonts = function() {
+    return src(path.src.fonts)
+        .pipe(dest(path.build.fonts))
+        .pipe(stream());
+};
 
-//-----------------------------------default task----------------------------//
-gulp.task('default', ['connect', 'html', 'sass', 'scripts', 'sass:watch', 'html:watch', 'scripts:watch']);
+//----------------------------------- JS ----------------------------//
+
+const main_scripts = function() {
+    return src(path.src.jsLib) 
+        .pipe(uglify()) 
+        .pipe(rename({suffix: '.min'})) 
+        .pipe(dest(path.build.js))
+        .pipe(stream());
+}
+const lib_scripts = function() {
+    return src(path.src.js) 
+        .pipe(babel({
+            presets: ['@babel/env']
+        }))
+        .pipe(sourcemaps.init())
+        .pipe(uglify()) 
+        .pipe(rename({suffix: '.min'})) 
+        .pipe(sourcemaps.write('./'))
+        .pipe(dest(path.build.js))
+        .pipe(stream());
+}
+
+const scripts = parallel( main_scripts , lib_scripts )
+
+const scripts_without_min = function () {
+    return src(path.src.js) 
+        .pipe(babel({
+            presets: ['@babel/env']
+        }))
+        .pipe(dest(path.build.js))
+};
+
+//----------------------------------- Image ----------------------------//
+
+const image = function () {
+    return src(path.src.img) 
+        .pipe(imagemin())
+        .pipe(dest(path.build.img))
+        .pipe(stream());
+};
+
+//----------------------------------- Serve ----------------------------//
+
+const build = parallel(html, styles, fonts, scripts, image)
+
+const without_min = parallel(styles_without_min, scripts_without_min)
+
+const webserver = function() {
+    return browserSync.init({
+        server: {
+            baseDir: "./build"
+        }
+    });
+};
+
+const serve = () => {
+    build()
+    webserver()
+    watch(path.watch.html, html);
+    watch(path.watch.scss, styles);
+    watch(path.src.fonts, fonts);
+    watch(path.src.js, scripts);
+    watch(path.src.img, image);
+}
+
+const clean = function (done) {
+    rimraf(path.clean, done);
+};
+
+//----------------------------------- Exports ----------------------------//
+
+exports.clean = clean
+
+exports.build = series(clean, build, without_min)
+
+exports.default = serve

@@ -1,399 +1,102 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+@@include('./templates/header.html')
 
-    
-    <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
-    <link rel="manifest" href="img/site.webmanifest">
+        <section class="section__search">
+            <div class="container">
+                <div class="intro__text js-intro-text" style="display: block;">
+                    <p>
+                        CASCADE is a repository of clinical trials that have been used to improve the HIV care cascade (initiation of treatment, adherence to antiretroviral therapy and retention in care). The studies have been curated by income level, vulnerable population, who delivered the intervention, the setting in which it was delivered, the intervention type and the level of pragmatism of the intervention (i.e., how close it is to real-world care).
+                    </p>
 
-    <link rel="stylesheet" href="css/main.min.css">
+                    <p>
+                        You can use it to learn about interventions, create evidence maps, conduct methodological research and conduct systematic reviews).
+                    </p>
+                </div>
 
-    <title>Cascade</title>
-</head>
-
-
-<body>
-<div class="main">
-
-<div class="background__img">
-    <picture>
-        <source srcset="img/background_img_1.webp" type="image/webp">
-        <img src="img/background_img_1.jpg" alt="alt">
-    </picture>
-</div>
-
-<header class="header js-header">
-    <a href="#" class="header__logo">
-        <img src="img/logo.png" alt="alt">
-    </a>
-</header>
-
-<div class="burger js-open-menubar">
-    <div class="burger__icon"></div>
-</div>
-
-<div class="search__btn js-open-searchbar">
-    <div class="icon-search"></div>
-</div>
-
-
-
-<section class="section__search">
-    <div class="container">
-        <div class="intro__text js-intro-text" style="display: block;">
-            <p>
-                CASCADE is a repository of clinical trials that have been used to improve the HIV care cascade (initiation of treatment, adherence to antiretroviral therapy and retention in care). The studies have been curated by income level, vulnerable population, who delivered the intervention, the setting in which it was delivered, the intervention type and the level of pragmatism of the intervention (i.e., how close it is to real-world care).
-            </p>
-
-            <p>
-                You can use it to learn about interventions, create evidence maps, conduct methodological research and conduct systematic reviews).
-            </p>
-        </div>
-
-        <form class="search__form js-search-form" style="display: block;">
-            <div class="form__group">
-                <input type="text" placeholder="Enter keywords or author names">
-            </div>
-
-            <div class="addvanced__search js-advanced-search">
-                <div class="d-flex flex-wrap">
-                    <div class="form__group form__double">
-                        <label>Year</label>
-                        <input type="text" placeholder="From">
-                        <input type="text" placeholder="To">
-                    </div>
+                <form class="search__form js-search-form" style="display: block;">
                     <div class="form__group">
-                        <label>Income</label>
-                        <input type="text">
+                        <input type="text" placeholder="Enter keywords or author names">
                     </div>
-                    <div class="form__group">
-                        <label>Key Population</label>
-                        <input type="text">
+
+                    <div class="addvanced__search js-advanced-search">
+                        <div class="d-flex flex-wrap">
+                            <div class="form__group form__double">
+                                <label>Year</label>
+                                <input type="text" placeholder="From">
+                                <input type="text" placeholder="To">
+                            </div>
+                            <div class="form__group">
+                                <label>Income</label>
+                                <input type="text">
+                            </div>
+                            <div class="form__group">
+                                <label>Key Population</label>
+                                <input type="text">
+                            </div>
+                            <div class="form__group">
+                                <label>Who delivered the intervention?</label>
+                                <input type="text">
+                            </div>
+                            <div class="form__group">
+                                <label>Setting</label>
+                                <input type="text">
+                            </div>
+                            <div class="form__group">
+                                <label>Intervention type</label>
+                                <input type="text">
+                            </div>
+                            <div class="form__group">
+                                <label>HIV care cascade outcome</label>
+                                <input type="text">
+                            </div>
+                            <div class="form__group">
+                                <label>Level of pragmatism</label>
+                                <input type="text">
+                            </div>
+                        </div>
                     </div>
-                    <div class="form__group">
-                        <label>Who delivered the intervention?</label>
-                        <input type="text">
+                
+                    <div class="submit__group">
+                        <a href="#" class="advanced__btn js-advanced-btn"> <span class="menu__inidicator"></span> <span class="js-btn-text">Advanced Search</span> </a>
+                        <input type="submit" value="search" class="js-search">
                     </div>
-                    <div class="form__group">
-                        <label>Setting</label>
-                        <input type="text">
-                    </div>
-                    <div class="form__group">
-                        <label>Intervention type</label>
-                        <input type="text">
-                    </div>
-                    <div class="form__group">
-                        <label>HIV care cascade outcome</label>
-                        <input type="text">
-                    </div>
-                    <div class="form__group">
-                        <label>Level of pragmatism</label>
-                        <input type="text">
+
+                </form>
+
+
+                <div class="result__table js-result-search">
+                    <div class="d-flex justify-content-between align-items-center flex-wrap">
+                        <div class="found__items">Found <b>234</b> articles</div>
+            
+                        <a href="#" class="btn"><span class="icon-export"></span> Export to CSV</a>
+            
+                        <ul class="js-result-table">
+                            
+                            @@for (var i = 0; i < 9 ; i++) {
+                                <li>
+                                    <div class="article__item">
+                                        <label>
+                                            <input type="checkbox">
+                                            <span class="checkbox__indicator"></span>
+                                        </label>
+                                        
+                                        <div class="article__text">
+                                            <h3> <a href="#"> Gender-based violence and engagement in biomedical HIV prevention, care and treatment: A scoping review</a></h3>
+                                            <p>
+                                                BACKGROUND: While gender-based violence (GBV) has been shown to increase women’s risk of HIV acquisition, the role of GBV in the HIV testing to care continuum is less clear. Clarifying...
+                                            </p>
+                
+                                            <div class="article__warning">The article will open on an external web page</div>
+                                        </div>
+                
+                                        <div class="article__year">2019</div>
+                                    </div>
+                                </li>
+                            }
+
+                        </ul>
                     </div>
                 </div>
             </div>
-        
-            <div class="submit__group">
-                <a href="#" class="advanced__btn js-advanced-btn"> <span class="menu__inidicator"></span> <span class="js-btn-text">Advanced Search</span> </a>
-                <input type="submit" value="search" class="js-search">
-            </div>
-
-        </form>
-
-
-        <div class="result__table js-result-search">
-            <div class="d-flex justify-content-between align-items-center flex-wrap">
-                <div class="found__items">Found <b>234</b> articles</div>
+        </section>
     
-                <a href="#" class="btn"><span class="icon-export"></span> Export to CSV</a>
-    
-                <ul class="js-result-table">
-                    <li>
-                        <div class="article__item">
-                            <label>
-                                <input type="checkbox">
-                                <span class="checkbox__indicator"></span>
-                            </label>
-                            
-                            <div class="article__text">
-                                <h3> <a href="#"> Gender-based violence and engagement in biomedical HIV prevention, care and treatment: A scoping review</a></h3>
-                                <p>
-                                    BACKGROUND: While gender-based violence (GBV) has been shown to increase women’s risk of HIV acquisition, the role of GBV in the HIV testing to care continuum is less clear. Clarifying...
-                                </p>
-    
-                                <div class="article__warning">The article will open on an external web page</div>
-                            </div>
-    
-                            <div class="article__year">2019</div>
-                        </div>
-                    </li>
-                    
-                    <li>
-                        <div class="article__item">
-                            <label>
-                                <input type="checkbox">
-                                <span class="checkbox__indicator"></span>
-                            </label>
-                            
-                            <div class="article__text">
-                                <h3> <a href="#"> Gender-based violence and engagement in biomedical HIV prevention, care and treatment: A scoping review</a></h3>
-                                <p>
-                                    BACKGROUND: While gender-based violence (GBV) has been shown to increase women’s risk of HIV acquisition, the role of GBV in the HIV testing to care continuum is less clear. Clarifying...
-                                </p>
-    
-                                <div class="article__warning">The article will open on an external web page</div>
-                            </div>
-    
-                            <div class="article__year">2019</div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="article__item">
-                            <label>
-                                <input type="checkbox">
-                                <span class="checkbox__indicator"></span>
-                            </label>
-                            
-                            <div class="article__text">
-                                <h3> <a href="#"> Gender-based violence and engagement in biomedical HIV prevention, care and treatment: A scoping review</a></h3>
-                                <p>
-                                    BACKGROUND: While gender-based violence (GBV) has been shown to increase women’s risk of HIV acquisition, the role of GBV in the HIV testing to care continuum is less clear. Clarifying...
-                                </p>
-    
-                                <div class="article__warning">The article will open on an external web page</div>
-                            </div>
-    
-                            <div class="article__year">2019</div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="article__item">
-                            <label>
-                                <input type="checkbox">
-                                <span class="checkbox__indicator"></span>
-                            </label>
-                            
-                            <div class="article__text">
-                                <h3> <a href="#"> Gender-based violence and engagement in biomedical HIV prevention, care and treatment: A scoping review</a></h3>
-                                <p>
-                                    BACKGROUND: While gender-based violence (GBV) has been shown to increase women’s risk of HIV acquisition, the role of GBV in the HIV testing to care continuum is less clear. Clarifying...
-                                </p>
-    
-                                <div class="article__warning">The article will open on an external web page</div>
-                            </div>
-    
-                            <div class="article__year">2019</div>
-                        </div>
-                    </li>
-                    
-                    <li>
-                        <div class="article__item">
-                            <label>
-                                <input type="checkbox">
-                                <span class="checkbox__indicator"></span>
-                            </label>
-                            
-                            <div class="article__text">
-                                <h3> <a href="#"> Gender-based violence and engagement in biomedical HIV prevention, care and treatment: A scoping review</a></h3>
-                                <p>
-                                    BACKGROUND: While gender-based violence (GBV) has been shown to increase women’s risk of HIV acquisition, the role of GBV in the HIV testing to care continuum is less clear. Clarifying...
-                                </p>
-    
-                                <div class="article__warning">The article will open on an external web page</div>
-                            </div>
-    
-                            <div class="article__year">2019</div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="article__item">
-                            <label>
-                                <input type="checkbox">
-                                <span class="checkbox__indicator"></span>
-                            </label>
-                            
-                            <div class="article__text">
-                                <h3> <a href="#"> Gender-based violence and engagement in biomedical HIV prevention, care and treatment: A scoping review</a></h3>
-                                <p>
-                                    BACKGROUND: While gender-based violence (GBV) has been shown to increase women’s risk of HIV acquisition, the role of GBV in the HIV testing to care continuum is less clear. Clarifying...
-                                </p>
-    
-                                <div class="article__warning">The article will open on an external web page</div>
-                            </div>
-    
-                            <div class="article__year">2019</div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="article__item">
-                            <label>
-                                <input type="checkbox">
-                                <span class="checkbox__indicator"></span>
-                            </label>
-                            
-                            <div class="article__text">
-                                <h3> <a href="#"> Gender-based violence and engagement in biomedical HIV prevention, care and treatment: A scoping review</a></h3>
-                                <p>
-                                    BACKGROUND: While gender-based violence (GBV) has been shown to increase women’s risk of HIV acquisition, the role of GBV in the HIV testing to care continuum is less clear. Clarifying...
-                                </p>
-    
-                                <div class="article__warning">The article will open on an external web page</div>
-                            </div>
-    
-                            <div class="article__year">2019</div>
-                        </div>
-                    </li>
-                    
-                    <li>
-                        <div class="article__item">
-                            <label>
-                                <input type="checkbox">
-                                <span class="checkbox__indicator"></span>
-                            </label>
-                            
-                            <div class="article__text">
-                                <h3> <a href="#"> Gender-based violence and engagement in biomedical HIV prevention, care and treatment: A scoping review</a></h3>
-                                <p>
-                                    BACKGROUND: While gender-based violence (GBV) has been shown to increase women’s risk of HIV acquisition, the role of GBV in the HIV testing to care continuum is less clear. Clarifying...
-                                </p>
-    
-                                <div class="article__warning">The article will open on an external web page</div>
-                            </div>
-    
-                            <div class="article__year">2019</div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="article__item">
-                            <label>
-                                <input type="checkbox">
-                                <span class="checkbox__indicator"></span>
-                            </label>
-                            
-                            <div class="article__text">
-                                <h3> <a href="#"> Gender-based violence and engagement in biomedical HIV prevention, care and treatment: A scoping review</a></h3>
-                                <p>
-                                    BACKGROUND: While gender-based violence (GBV) has been shown to increase women’s risk of HIV acquisition, the role of GBV in the HIV testing to care continuum is less clear. Clarifying...
-                                </p>
-    
-                                <div class="article__warning">The article will open on an external web page</div>
-                            </div>
-    
-                            <div class="article__year">2019</div>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</section>
-
-    
-</div>
-
-<footer class="footer js-footer">
-    <div class="container-footer">
-        <div class="footer__inner">
-            <a href="#" class="footer__logo">Cascade</a>
-            <p>@<span class="js-copyright"></span> All Rights Reserved.</p>
-
-            <ul>
-                <li>
-                    <a href="#">Privacy Policy </a>
-                </li>
-                <li>
-                    <a href="#">Terms of Use</a>
-                </li>
-            </ul>
-
-            <p>
-                Developed by <a href="#">Webcapitan TEAM</a>
-            </p>
-        </div>
-
-        
-    </div>
-</footer>
-
-<div class="transparent__overlay js-transparent-overlay">
-    <div class="menubar js-menubar">
-        <div class="close__menu js-close-menubar"></div>
-        <h2>Menu</h2>
-    
-        <ul>
-            <li>
-                <a href="#">About Us</a>
-            </li>
-            <li>
-                <a href="#">Partners</a>
-            </li>
-            <li>
-                <a href="#">Tips</a>
-            </li>
-            <li>
-                <a href="#">Contact us</a>
-            </li>
-        </ul>
-    </div>
-    
-    <div class="search__bar js-searchbar">
-        <div class="close__menu js-close-searchbar"></div>
-    
-        <h2>Search</h2>
-    
-        <div class="form__group">
-            <input type="text" placeholder="Enter keywords or author names">
-        </div>
-    
-        <div class="addvanced__search" style="display: block;">
-            <div class="form__group form__double">
-                <label>Year</label>
-                <input type="text" placeholder="From">
-                <input type="text" placeholder="To">
-            </div>
-            <div class="form__group">
-                <label>Income</label>
-                <input type="text">
-            </div>
-            <div class="form__group">
-                <label>Key Population</label>
-                <input type="text">
-            </div>
-            <div class="form__group">
-                <label>Who delivered the intervention?</label>
-                <input type="text">
-            </div>
-            <div class="form__group">
-                <label>Setting</label>
-                <input type="text">
-            </div>
-            <div class="form__group">
-                <label>Intervention type</label>
-                <input type="text">
-            </div>
-            <div class="form__group">
-                <label>HIV care cascade outcome</label>
-                <input type="text">
-            </div>
-            <div class="form__group">
-                <label>Level of pragmatism</label>
-                <input type="text">
-            </div>
-        </div>
-    
-        <div class="submit__group">
-            <input type="submit" value="search" class="js-search">
-        </div>
-    </div>
-</div>
-
-
-<script src="js/main.min.js"></script>
-
-</body>
-</html>
+@@include('./templates/footer.html')
