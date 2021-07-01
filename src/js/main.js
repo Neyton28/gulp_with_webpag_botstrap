@@ -37,6 +37,14 @@ $('.js-open-menubar').on('click', openMenuBar);
 
 $('.js-close-menubar').on('click', closeAllMenus);
 
+
+$(document).mouseup(function (e) {
+    let div = $(".js-menubar");
+    if (!div.is(e.target) && div.has(e.target).length === 0 && menuBarFlag == true) {
+        closeMenuBar();
+    }
+});
+
 // searchbar func
 
 let searchBarFlag = false;
@@ -56,6 +64,13 @@ function closeSearchBar() {
 $('.js-open-searchbar').on('click', openSearchBar);
 
 $('.js-close-searchbar').on('click', closeAllMenus);
+
+$(document).mouseup(function (e) {
+    let div = $(".js-searchbar");
+    if (!div.is(e.target) && div.has(e.target).length === 0 && searchBarFlag == true) {
+        closeSearchBar();
+    }
+});
 
 
 function closeAllMenus() {
@@ -140,6 +155,15 @@ $('.js-search').on('click', function(e) {
 
 // result table func end
 
+// accordion func
+
+$('.js-accordion-wrapper li h4').on('click', function() {
+    $(this).parents('li').toggleClass('active');
+    $(this).parents('li').find('>div').slideToggle(500);
+});
+
+// accordion func end
+
 // ready func
 $(document).ready( function() {
 
@@ -148,16 +172,10 @@ $(document).ready( function() {
 
     adaptiveContent();
     getResultHeight();
-
-    $(".js-result-table").niceScroll({
-        cursorcolor: "#f01822",
-        cursorwidth: "3px",
-        cursorborderradius: "3px",
-        cursorborder: "none",
-        background: "#fff",
-        autohidemode: "#false"
+    
+    new PerfectScrollbar('.js-result-table', {
+        suppressScrollX: false
     });
-
 
     // resize func
 

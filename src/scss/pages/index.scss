@@ -26,6 +26,14 @@
         margin-bottom: 41px;
     }
 
+    @media screen and ($desktop-lg) {
+        font-size: 20px;
+        padding: 0 15px;
+        p {
+            margin-bottom: 25px;
+        }
+    }
+
     @media screen and ($desktop) {
         font-size: 18px;
         padding: 0 15px;
@@ -126,6 +134,7 @@
 
 .form__group {
     width: 100%;
+    position: relative;
 
     label {
         display: block;
@@ -161,6 +170,10 @@
         justify-content: space-between;
         flex-wrap: wrap;
 
+        &:after {
+            content: none;
+        }
+
         input {
             width: calc(100%/2 - 18px);
             margin-right: 35px;
@@ -171,6 +184,25 @@
             }
         }
     }
+
+    @media screen and ($desktop-lg) {
+
+        input {
+            height: 40px;
+        }
+        &:after,
+        &:before {
+            content: "";
+            height: 36px;
+            width: 1px;
+            background-color: #ddd;
+            position: absolute;
+            left: auto;
+            right: 0;
+            bottom: 2px;
+            transition: 0.2s;
+        }
+    }   
 
     @media screen and ($desktop-sm) {
         &.form__double input {
@@ -284,7 +316,9 @@
 
 .result__table ul {
     margin: 31px 0 10px;
-    overflow: hidden;
+    margin-right: -30px;
+    padding-right: 30px;
+    position: relative;
     // height: 648px;
     li {
         padding-bottom: 9px;
@@ -346,6 +380,8 @@
     }
 
     @media screen and ($mobile-sm) {
+        margin-right: 0;
+        padding-right: 0;
         li .article__item {
             padding: 15px 10px;
         }
@@ -433,6 +469,276 @@
 
         &:before {
             font-size: 14px;
+        }
+    }
+}
+
+
+
+.section__about {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding: 4.3vh 0;
+
+    h2 {
+        text-align: center;
+        color: #282828;
+        text-transform: uppercase;
+        font-size: 30px;
+        margin-top: 60px;
+        margin-bottom: 30px;
+        font-weight: 800;
+      
+        @media screen and ($mobile-sm) {
+          font-size: 20px;
+        }
+    }
+
+    h2 {
+        margin-top: 56px;
+        margin-bottom: 24px;
+    }
+
+    p {
+        font-size: 15px; 
+        margin-left: 71px;
+        line-height: 1.6;
+        max-width: 902px;
+        margin-bottom: 24px;
+        color: #616161;
+
+        a {
+            color: #be1821;
+        }
+    }
+
+    .text__item {
+        margin-bottom: 83px;
+    }
+
+    @media screen and ($desktop-lg) {
+        .text__item {
+            margin-bottom: 30px;
+            h2 {
+                font-size: 25px;
+                margin-top: 30px;
+                margin-bottom: 15px;
+            } 
+        }
+    }
+
+    @media screen and ($desktop) {
+        p {
+            margin: 0 auto;
+            margin-bottom: 20px;
+        }
+    }
+
+    @media screen and ($mobile-sm) {
+        margin-top: 30px;
+      }
+}
+
+
+.section__partners {
+    padding: 4.5vh 0;
+    h2 {
+        text-align: center;
+        color: #282828;
+        font-size: 36px;
+        margin-top: 30px;
+        margin-bottom: 59px;
+        font-weight: 800;
+      
+        @media screen and ($mobile-sm) {
+          font-size: 20px;
+        }
+    }
+
+    h3 {
+        font-size: 24px;
+        text-align: center;
+        font-weight: 600;
+        margin-bottom: 16px;
+    }
+
+    p {
+        font-weight: 600;
+        font-size: 15px;
+        color: #717171;
+        text-align: center;
+    }
+
+    @media screen and ($desktop-lg) {
+        h2 {
+            margin-top: 15px;
+            margin-bottom: 30px;
+            font-size: 30px;
+        }
+    }
+
+    @media screen and ($desktop) {
+        h2 {
+            margin-top: 15px;
+            margin-bottom: 20px;
+        }
+    }
+}
+
+.partners__wrapper {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-right: -34px;
+    margin-bottom: 60px;
+
+    li {
+        width: calc(100%/4 - 31px);
+        background-color: #fff;
+        border-radius: 12px;
+        height: 210px;
+        margin-right: 31px;
+        margin-bottom: 30px;
+        padding: 30px 15px;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+    }
+
+    @media screen and ($desktop-lg) {
+        margin-bottom: 10px;
+    }
+
+    @media screen and ($desktop) {
+        li {
+            height: 130px;
+            margin-bottom: 10px;
+        }
+    }
+
+    @media screen and ($tablet) {
+        margin-right: -15px;
+        li {
+            width: calc(100%/4 - 15px);
+            margin-right: 15px;
+            margin-bottom: 15px;
+        }
+    }
+
+    @media screen and ($mobile) {
+        li {
+            width: calc(100%/2 - 15px);
+        }
+    }
+
+    @media screen and ($mobile-sm) {
+        margin-right: 0;
+        justify-content: center;
+        li {
+            max-width: 320px;
+            width: 100%;
+            height: auto;
+            margin-right: 0;
+        }
+    }
+}
+
+.section__tips {
+    padding: 4.5vh 0 0;
+
+    h1 {
+        margin-bottom: 33px;
+    }
+
+    p {
+        margin: 0 -30px;
+        font-size: 24px;
+        color: #282828;
+        text-align: center;
+        font-weight: 600;
+        line-height: 1.7;
+    }
+
+    @media screen and ($tablet) {
+        p {
+            font-size: 18px;
+            margin: 0 auto;
+        }
+    }
+}
+
+
+.accordion__wrapper {
+    margin: 36px 0 0;
+    li {
+        background-color: #fff;
+        border-radius: 13px;
+        margin-bottom: 8px;
+        padding: 18px 29px 16px;
+
+        h4 {
+            font-size: 18px;
+            transition: 0.2s;
+            position: relative;
+            margin-bottom: 0;
+            cursor: pointer;
+            font-weight: 600;
+            padding-right: 25px;
+
+            &:after,
+            &:before {
+                content: "";
+                position: absolute;
+                right: 0;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 17px;
+                height: 3px;
+                background-color: #f01822;
+                transition: 0.2s;
+            }
+
+            &:before {
+                transform: translateY(-50%) rotate(90deg);
+            }
+
+        }
+
+
+        >div {
+            display: none;
+            margin-top: 12px;
+        }
+
+        p {
+            text-align: left;
+            font-size: 15px;
+            color: #717171;
+            margin: 0;
+            margin-right: 40px;
+            margin-bottom: 2px;
+        }
+
+        &.active h4 {
+            color: #f01822;
+        
+            &:before {
+                transform: translateY(-50%) rotate(0deg);
+            }
+        }
+    }
+
+    @media screen and ($mobile-sm) {
+        li {
+            >div {
+                p {
+                    margin-right: 0;
+                }
+            }
         }
     }
 }

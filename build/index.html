@@ -12,20 +12,21 @@
     <link rel="manifest" href="img/site.webmanifest">
 
     <link rel="stylesheet" href="css/main.min.css">
+    <link rel="stylesheet" href="css/perfect-scrollbar.css">
 
     <title>Cascade</title>
 </head>
 
 
 <body>
+    <div class="background__img">
+        <picture>
+            <source srcset="img/background_img_1.webp" type="image/webp">
+            <img src="img/background_img_1.jpg" alt="alt">
+        </picture>
+    </div>
     <div class="main">
 
-        <div class="background__img">
-            <picture>
-                <source srcset="img/background_img_1.webp" type="image/webp">
-                <img src="img/background_img_1.jpg" alt="alt">
-            </picture>
-        </div>
 
         <header class="header js-header">
             <a href="#" class="header__logo">
@@ -399,8 +400,22 @@
     </div>
 </div>
 
+<div class="pages">
+
+    <span>pages</span>
+
+    <ol>
+        <li><a href="index.html">Index</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="article.html">Article</a></li>
+        <li><a href="partners.html">Partners</a></li>
+        <li><a href="tips.html">Tips</a></li>
+    </ol>
+
+</div>
+
 <script src="js/jquery.min.js"></script>
-<script src="js/jquery.nicescroll.min.js"></script>
+<script src="js/perfect-scrollbar.min.min.js"></script>
 <script src="js/main.min.js"></script>
 
 </body>

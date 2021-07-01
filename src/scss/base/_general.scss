@@ -20,6 +20,11 @@ body {
   
   &.fixed {
       overflow: hidden;
+
+      .main,
+      .footer {
+        filter: blur(20px);
+      }
   }
 }
 
@@ -60,6 +65,7 @@ ul {
 
 .main {
     position: relative;
+    transition: 0.2s;
     overflow: hidden;
 }
 
@@ -96,6 +102,28 @@ ul {
     }
   }
 }
+
+h1 {
+  text-align: center;
+  color: #fff;
+  position: relative;
+  font-size: 18px;
+  text-transform: uppercase;
+  padding-bottom: 24px;
+
+  &:after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 2px;
+    background-color: #f01822;
+  }
+}
+
+
 
 .burger,
 .search__btn {
@@ -192,7 +220,8 @@ ul {
 footer {
   width: 100%;
   padding: 20px 0 45px;
-
+  transition: 0.2s;
+  
   p {
     margin-bottom: 0;
     font-size: 13px;
@@ -261,6 +290,9 @@ footer {
   color: #282828;
   text-transform: uppercase;
   margin-bottom: 1px;
+  &:hover {
+    color: #282828;
+  }
 
   @media screen and ($mobile) {
     text-align: center;
@@ -408,6 +440,24 @@ footer {
 
   @media screen and ($mobile-sm) {
     width: 100%;
+  }
+}
+
+.ps__rail-y {
+  background-color: #fff !important;
+  opacity: 1 !important;
+  width: 3px !important;
+
+  .ps__thumb-y {
+    background-color: #f01822;
+    width: 3px;
+    left: 0px;
+  }
+
+  &:hover .ps__thumb-y,
+  &:focus .ps__thumb-y {
+    width: 3px !important;
+    background-color: #f01822 !important;
   }
 }
 

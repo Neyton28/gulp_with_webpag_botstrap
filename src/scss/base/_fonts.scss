@@ -26,6 +26,15 @@
     font-weight: 700;
     font-style: normal;
 }
+@font-face {
+  font-family: 'ProximaNova';
+  src: url('../fonts/ProximaNova-Extrabld.eot');
+  src: url('../fonts/ProximaNova-Extrabld.eot?#iefix') format('embedded-opentype'),
+  url('../fonts/ProximaNova-Extrabld.woff') format('woff'),
+  url('../fonts/ProximaNova-Extrabld.ttf') format('truetype');
+  font-weight: 800;
+  font-style: normal;
+}
 
 @font-face {
   font-family: 'icomoon';
