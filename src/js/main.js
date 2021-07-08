@@ -1,4 +1,7 @@
+// import { Tooltip } from 'bootstrap';
 
+import collapse from 'bootstrap/js/dist/collapse';
+import Tab from 'bootstrap/js/dist/tab';
 // all func
 
 // overlay func

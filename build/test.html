@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
+    <link rel="manifest" href="img/site.webmanifest">
+
+    <link rel="stylesheet" href="css/main.min.css">
+    <link rel="stylesheet" href="css/perfect-scrollbar.css">
+
+    <title>Cascade</title>
+</head>
+
+
+<body>
+    <div class="background__img">
+        <picture>
+            <source srcset="img/background_img_1.webp" type="image/webp">
+            <img src="img/background_img_1.jpg" alt="alt">
+        </picture>
+    </div>
+    <div class="main">
+
+
+        <header class="header js-header">
+            <a href="#" class="header__logo">
+                <img src="img/logo.png" alt="alt">
+            </a>
+        </header>
+
+        <div class="burger js-open-menubar">
+            <div class="burger__icon"></div>
+        </div>
+
+        <div class="search__btn js-open-searchbar">
+            <div class="icon-search"></div>
+        </div>
+
+    <div class="container">
+
+        <div class="accordion" id="accordionExample">
+            <div class="accordion-item">
+            <h2 class="accordion-header" id="headingOne">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                Accordion Item #1
+                </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                </div>
+            </div>
+            </div>
+            <div class="accordion-item">
+            <h2 class="accordion-header" id="headingTwo">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                Accordion Item #2
+                </button>
+            </h2>
+            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                </div>
+            </div>
+            </div>
+            <div class="accordion-item">
+            <h2 class="accordion-header" id="headingThree">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                Accordion Item #3
+                </button>
+            </h2>
+            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                </div>
+            </div>
+            </div>
+        </div>
+
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Home</button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Profile</button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">Contact</button>
+            </li>
+          </ul>
+          <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">d</div>
+            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">b</div>
+            <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">f</div>
+          </div>
+    </div>
+
+</div>
+
+
+<footer class="footer js-footer">
+    <div class="container-footer">
+        <div class="footer__inner">
+            <div class="footer__logo">
+                <a href="#">Cascade</a>
+            </div>
+            
+            <p>@<span class="js-copyright"></span> All Rights Reserved.</p>
+
+            <ul>
+                <li>
+                    <a href="#">Privacy Policy </a>
+                </li>
+                <li>
+                    <a href="#">Terms of Use</a>
+                </li>
+            </ul>
+
+            <p>
+                Developed by <a href="#">Webcapitan TEAM</a>
+            </p>
+        </div>
+
+        
+    </div>
+</footer>
+
+<div class="transparent__overlay js-transparent-overlay">
+    <div class="menubar js-menubar">
+        <div class="close__menu js-close-menubar"></div>
+        <h2>Menu</h2>
+    
+        <ul>
+            <li>
+                <a href="#">About Us</a>
+            </li>
+            <li>
+                <a href="#">Partners</a>
+            </li>
+            <li>
+                <a href="#">Tips</a>
+            </li>
+            <li>
+                <a href="#">Contact us</a>
+            </li>
+        </ul>
+    </div>
+    
+    <div class="search__bar js-searchbar">
+        <div class="close__menu js-close-searchbar"></div>
+    
+        <h2>Search</h2>
+    
+        <div class="form__group">
+            <input type="text" placeholder="Enter keywords or author names">
+        </div>
+    
+        <div class="addvanced__search" style="display: block;">
+            <div class="form__group form__double">
+                <label>Year</label>
+                <input type="text" placeholder="From">
+                <input type="text" placeholder="To">
+            </div>
+            <div class="form__group">
+                <label>Income</label>
+                <input type="text">
+            </div>
+            <div class="form__group">
+                <label>Key Population</label>
+                <input type="text">
+            </div>
+            <div class="form__group">
+                <label>Who delivered the intervention?</label>
+                <input type="text">
+            </div>
+            <div class="form__group">
+                <label>Setting</label>
+                <input type="text">
+            </div>
+            <div class="form__group">
+                <label>Intervention type</label>
+                <input type="text">
+            </div>
+            <div class="form__group">
+                <label>HIV care cascade outcome</label>
+                <input type="text">
+            </div>
+            <div class="form__group">
+                <label>Level of pragmatism</label>
+                <input type="text">
+            </div>
+        </div>
+    
+        <div class="submit__group">
+            <input type="submit" value="search" class="js-search">
+        </div>
+    </div>
+</div>
+
+<div class="pages">
+
+    <span>pages</span>
+
+    <ol>
+        <li><a href="index.html">Index</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="article.html">Article</a></li>
+        <li><a href="partners.html">Partners</a></li>
+        <li><a href="tips.html">Tips</a></li>
+    </ol>
+
+</div>
+
+<script src="js/jquery.min.js"></script>
+<script src="js/perfect-scrollbar.min.min.js"></script>
+<script src="js/main.min.js"></script>
+
+</body>
+</html>

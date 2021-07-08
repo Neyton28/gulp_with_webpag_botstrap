@@ -12,6 +12,7 @@ const   {task, watch, src, dest, parallel, series} = require('gulp'),
         rename = require('gulp-rename'),
         stream = browserSync.stream
         
+const   webpack = require('webpack-stream');
 
 //----------------------------------- Path ----------------------------//
 
@@ -97,6 +98,12 @@ const lib_scripts = function() {
             presets: ['@babel/env']
         }))
         .pipe(sourcemaps.init())
+        .pipe(webpack({
+            mode: 'development',
+            output: {
+                filename: 'main.js',
+              },
+        }))
         .pipe(uglify()) 
         .pipe(rename({suffix: '.min'})) 
         .pipe(sourcemaps.write('./'))
